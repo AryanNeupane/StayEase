@@ -6,4 +6,5 @@
         "method-override"
         "mongoose"
         "nodemon")
-- - 
+- - ejs, ejs mate for UI rendering
+- - JOI for schema validation
