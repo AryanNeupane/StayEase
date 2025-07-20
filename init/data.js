@@ -1,296 +1,296 @@
-
 const sampleListings = [
   {
-    title:"LakeSide Motel",
+    title: "Pokhara Lakeside Cottage",
     description:
-      "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
+      "Relax in this charming lakeside cottage overlooking the serene Phewa Lake. Enjoy stunning views of the Annapurna range and easy access to boating and local cafes.",
     image:
       "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=800&q=60",
     price: 1500,
-    location: "Malibu",
-    country: "United States",
+    location: "Pokhara",
+    country: "Nepal",
   },
   {
-    title: "Modern Loft in Downtown",
+    title: "Modern Apartment in Thamel",
     description:
-      "Stay in the heart of the city in this stylish loft apartment. Perfect for urban explorers!",
+      "Stay in the heart of Kathmandu's tourist hub in this stylish and modern apartment. Perfect for exploring local markets, cafes, and nightlife!",
     image:
       "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=60",
     price: 1200,
-    location: "New York City",
-    country: "United States",
+    location: "Thamel, Kathmandu",
+    country: "Nepal",
   },
   {
-    title:"Hill View HomeStay",
+    title: "Peaceful Homestay in Nagarkot",
     description:
-      "Unplug and unwind in this peaceful mountain cabin. Surrounded by nature, it's a perfect place to recharge.",
+      "Unplug and unwind in this peaceful mountain cabin with breathtaking sunrise views of the Himalayas. Surrounded by nature, perfect for relaxation and trekking.",
     image:
       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=60",
     price: 1000,
-    location: "Aspen",
-    country: "United States",
+    location: "Nagarkot",
+    country: "Nepal",
   },
   {
-    title: "Historic Villa in Tuscany",
+    title: "Heritage Villa in Bhaktapur",
     description:
-      "Experience the charm of Tuscany in this beautifully restored villa. Explore the rolling hills and vineyards.",
+      "Experience the rich culture and architecture of Nepal in this beautifully restored traditional Newari villa. Explore historic squares and local handicrafts nearby.",
     image:
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=60",
     price: 2500,
-    location: "Florence",
-    country: "Italy",
+    location: "Bhaktapur",
+    country: "Nepal",
   },
   {
-    title: "Secluded Treehouse Getaway",
+    title: "Secluded Treehouse in Chitwan",
     description:
-      "Live among the treetops in this unique treehouse retreat. A true nature lover's paradise.",
+      "Live among the treetops in this unique treehouse retreat near Chitwan National Park. A true nature lover's paradise with wildlife safari opportunities.",
     image:
       "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=60",
     price: 800,
-    location: "Portland",
-    country: "United States",
+    location: "Chitwan",
+    country: "Nepal",
   },
   {
-    title: "Beachfront Paradise",
+    title: "Beachfront Resort by Koshi River",
     description:
-      "Step out of your door onto the sandy beach. This beachfront condo offers the ultimate relaxation.",
+      "Step out onto the sandy riverbank at this beautiful Koshi Riverfront resort offering ultimate relaxation and stunning sunset views.",
     image:
       "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=60",
     price: 2000,
-    location: "Cancun",
-    country: "Mexico",
+    location: "Saptari",
+    country: "Nepal",
   },
   {
-    title: "Rustic Cabin by the Lake",
+    title: "Rustic Cabin by Rara Lake",
     description:
-      "Spend your days fishing and kayaking on the serene lake. This cozy cabin is perfect for outdoor enthusiasts.",
+      "Spend your days fishing and kayaking on the pristine waters of Rara Lake. This cozy cabin is perfect for outdoor enthusiasts seeking tranquility.",
     image:
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=60",
     price: 900,
-    location: "Lake Tahoe",
-    country: "United States",
+    location: "Rara National Park",
+    country: "Nepal",
   },
   {
-    title: "Luxury Penthouse with City Views",
+    title: "Luxury Penthouse with Kathmandu Valley Views",
     description:
-      "Indulge in luxury living with panoramic city views from this stunning penthouse apartment.",
+      "Indulge in luxury living with panoramic views of Kathmandu Valley from this stunning penthouse apartment with modern amenities.",
     image:
       "https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?auto=format&fit=crop&w=800&q=60",
     price: 3500,
-    location: "Los Angeles",
-    country: "United States",
+    location: "Kathmandu",
+    country: "Nepal",
   },
   {
-    title: "Ski-In/Ski-Out Chalet",
+    title: "Ski Lodge near Annapurna Base Camp",
     description:
-      "Hit the slopes right from your doorstep in this ski-in/ski-out chalet in the Swiss Alps.",
+      "Experience the thrill of the Himalayas in this cozy ski lodge near popular trekking routes. Perfect for adventurers wanting a mountain retreat.",
     image:
       "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=800&q=60",
     price: 3000,
-    location: "Verbier",
-    country: "Switzerland",
+    location: "Annapurna Region",
+    country: "Nepal",
   },
   {
-    title: "Safari Lodge in the Serengeti",
+    title: "Wildlife Safari Lodge in Bardia",
     description:
-      "Experience the thrill of the wild in a comfortable safari lodge. Witness the Great Migration up close.",
+      "Experience the thrill of the wild in this comfortable lodge near Bardia National Park. Witness wildlife like tigers, rhinos, and elephants up close.",
     image:
       "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=60",
     price: 4000,
-    location: "Serengeti National Park",
-    country: "Tanzania",
+    location: "Bardia National Park",
+    country: "Nepal",
   },
+
   {
-    title: "Historic Canal House",
+    title: "Heritage House in Patan",
     description:
-      "Stay in a piece of history in this beautifully preserved canal house in Amsterdam's iconic district.",
+      "Stay in a beautifully preserved traditional Newari house located in the historic Patan Durbar Square area. Dive into culture and local craftsmanship.",
     image:
       "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=60",
     price: 1800,
-    location: "Amsterdam",
-    country: "Netherlands",
+    location: "Patan",
+    country: "Nepal",
   },
   {
-    title: "Private Island Retreat",
+    title: "Private Island Retreat on Phewa Lake",
     description:
-      "Have an entire island to yourself for a truly exclusive and unforgettable vacation experience.",
+      "Enjoy exclusive tranquility on a private island in Phewa Lake, Pokhara. Perfect for honeymooners or those seeking ultimate privacy with nature.",
     image:
       "https://images.unsplash.com/photo-1618140052121-39fc6db33972?auto=format&fit=crop&w=800&q=60",
     price: 10000,
-    location: "Fiji",
-    country: "Fiji",
+    location: "Pokhara",
+    country: "Nepal",
   },
   {
-    title: "Charming Cottage in the Cotswolds",
+    title: "Charming Cottage in Bandipur",
     description:
-      "Escape to the picturesque Cotswolds in this quaint and charming cottage with a thatched roof.",
+      "Escape to this quaint and charming cottage nestled in the hill town of Bandipur. Enjoy traditional architecture with modern comforts.",
     image:
       "https://images.unsplash.com/photo-1602088113235-229c19758e9f?auto=format&fit=crop&w=800&q=60",
     price: 1200,
-    location: "Cotswolds",
-    country: "United Kingdom",
+    location: "Bandipur",
+    country: "Nepal",
   },
   {
-    title: "Historic Brownstone in Boston",
+    title: "Historic Mansion in Janakpur",
     description:
-      "Step back in time in this elegant historic brownstone located in the heart of Boston.",
+      "Step back in time in this elegant historic mansion in Janakpur, rich with Mithila art and culture, close to religious and cultural landmarks.",
     image:
       "https://images.unsplash.com/photo-1533619239233-6280475a633a?auto=format&fit=crop&w=800&q=60",
     price: 2200,
-    location: "Boston",
-    country: "United States",
+    location: "Janakpur",
+    country: "Nepal",
   },
   {
-    title: "Beachfront Bungalow in Bali",
+    title: "Riverside Bungalow in Chitwan",
     description:
-      "Relax on the sandy shores of Bali in this beautiful beachfront bungalow with a private pool.",
+      "Relax by the Rapti River in this beautiful bungalow with access to jungle safaris and cultural Tharu village tours.",
     image:
       "https://images.unsplash.com/photo-1602391833977-358a52198938?auto=format&fit=crop&w=800&q=60",
     price: 1800,
-    location: "Bali",
-    country: "Indonesia",
+    location: "Chitwan",
+    country: "Nepal",
   },
   {
-    title: "Mountain View Cabin in Banff",
+    title: "Mountain View Cabin in Langtang",
     description:
-      "Enjoy breathtaking mountain views from this cozy cabin in the Canadian Rockies.",
+      "Enjoy breathtaking Himalayan views from this cozy cabin in Langtang National Park. Ideal for trekkers and nature lovers.",
     image:
       "https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb?auto=format&fit=crop&w=800&q=60",
     price: 1500,
-    location: "Banff",
-    country: "Canada",
+    location: "Langtang",
+    country: "Nepal",
   },
   {
-    title: "Art Deco Apartment in Miami",
+    title: "Art Deco Apartment in Lazimpat",
     description:
-      "Step into the glamour of the 1920s in this stylish Art Deco apartment in South Beach.",
+      "Step into luxury and modern style in this stylish Art Deco apartment located in the upscale Lazimpat neighborhood of Kathmandu.",
     image:
       "https://plus.unsplash.com/premium_photo-1670963964797-942df1804579?auto=format&fit=crop&w=800&q=60",
     price: 1600,
-    location: "Miami",
-    country: "United States",
+    location: "Lazimpat, Kathmandu",
+    country: "Nepal",
   },
   {
-    title: "Tropical Villa in Phuket",
+    title: "Tropical Villa near Ilam",
     description:
-      "Escape to a tropical paradise in this luxurious villa with a private infinity pool in Phuket.",
+      "Escape to a peaceful tropical villa surrounded by tea gardens in Ilam. Perfect for nature walks and quiet retreats.",
     image:
       "https://images.unsplash.com/photo-1470165301023-58dab8118cc9?auto=format&fit=crop&w=800&q=60",
     price: 3000,
-    location: "Phuket",
-    country: "Thailand",
+    location: "Ilam",
+    country: "Nepal",
   },
   {
-    title: "Historic Castle in Scotland",
+    title: "Historic Fort Stay in Gorkha",
     description:
-      "Live like royalty in this historic castle in the Scottish Highlands. Explore the rugged beauty of the area.",
+      "Live like royalty in this historic fort near Gorkha Durbar. Explore the history and stunning Himalayan views of this legendary kingdom.",
     image:
       "https://images.unsplash.com/photo-1585543805890-6051f7829f98?auto=format&fit=crop&w=800&q=60",
     price: 4000,
-    location: "Scottish Highlands",
-    country: "United Kingdom",
+    location: "Gorkha",
+    country: "Nepal",
   },
   {
-    title: "Desert Oasis in Dubai",
+    title: "Desert Oasis Experience in Upper Mustang",
     description:
-      "Experience luxury in the middle of the desert in this opulent oasis in Dubai with a private pool.",
+      "Discover the unique desert landscape of Upper Mustang with this luxurious oasis-style lodge, offering private pools and stunning valley views.",
     image:
       "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=60",
     price: 5000,
-    location: "Dubai",
-    country: "United Arab Emirates",
+    location: "Upper Mustang",
+    country: "Nepal",
   },
+
   {
-    title: "Rustic Log Cabin in Montana",
+    title: "Rustic Log Cabin in Rara",
     description:
-      "Unplug and unwind in this cozy log cabin surrounded by the natural beauty of Montana.",
+      "Unplug and unwind in this cozy log cabin surrounded by the pristine natural beauty of Rara National Park, perfect for nature lovers.",
     image:
       "https://images.unsplash.com/photo-1586375300773-8384e3e4916f?auto=format&fit=crop&w=800&q=60",
     price: 1100,
-    location: "Montana",
-    country: "United States",
+    location: "Rara",
+    country: "Nepal",
   },
   {
-    title: "Beachfront Villa in Greece",
+    title: "Beachfront Villa on Ghodaghodi Lake",
     description:
-      "Enjoy the crystal-clear waters of the Mediterranean in this beautiful beachfront villa on a Greek island.",
+      "Enjoy serene views and crystal-clear waters at this beautiful beachfront villa on the shores of Ghodaghodi Lake, ideal for bird watching and relaxation.",
     image:
       "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?auto=format&fit=crop&w=800&q=60",
     price: 2500,
-    location: "Mykonos",
-    country: "Greece",
+    location: "Ghodaghodi, Sudurpashchim",
+    country: "Nepal",
   },
   {
-    title: "Eco-Friendly Treehouse Retreat",
+    title: "Eco-Friendly Treehouse Retreat in Ilam",
     description:
-      "Stay in an eco-friendly treehouse nestled in the forest. It's the perfect escape for nature lovers.",
+      "Stay in an eco-friendly treehouse nestled among the tea gardens of Ilam. A perfect nature escape for eco-conscious travelers.",
     image:
       "https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?auto=format&fit=crop&w=800&q=60",
     price: 750,
-    location: "Costa Rica",
-    country: "Costa Rica",
+    location: "Ilam",
+    country: "Nepal",
   },
   {
-    title: "Historic Cottage in Charleston",
+    title: "Historic Cottage in Tansen",
     description:
-      "Experience the charm of historic Charleston in this beautifully restored cottage with a private garden.",
+      "Experience the charm of historic Tansen in this beautifully restored cottage featuring traditional Newari architecture and a private garden.",
     image:
       "https://images.unsplash.com/photo-1587381420270-3e1a5b9e6904?auto=format&fit=crop&w=800&q=60",
     price: 1600,
-    location: "Charleston",
-    country: "United States",
+    location: "Tansen",
+    country: "Nepal",
   },
   {
-    title: "Modern Apartment in Tokyo",
+    title: "Modern Apartment in Kathmandu",
     description:
-      "Explore the vibrant city of Tokyo from this modern and centrally located apartment.",
+      "Explore the vibrant capital city from this modern, centrally located apartment with easy access to shopping, restaurants, and cultural sites.",
     image:
       "https://images.unsplash.com/photo-1480796927426-f609979314bd?auto=format&fit=crop&w=800&q=60",
     price: 2000,
-    location: "Tokyo",
-    country: "Japan",
+    location: "Kathmandu",
+    country: "Nepal",
   },
   {
-    title: "Lakefront Cabin in New Hampshire",
+    title: "Lakefront Cabin in Phewa Lake",
     description:
-      "Spend your days by the lake in this cozy cabin in the scenic White Mountains of New Hampshire.",
+      "Spend your days relaxing by the lake in this cozy cabin at Phewa Lake with beautiful views and easy access to boating and lakeside cafes.",
     image:
       "https://images.unsplash.com/photo-1578645510447-e20b4311e3ce?auto=format&fit=crop&w=800&q=60",
     price: 1200,
-    location: "New Hampshire",
-    country: "United States",
+    location: "Pokhara",
+    country: "Nepal",
   },
   {
-    title: "Luxury Villa in the Maldives",
+    title: "Luxury Villa in the Himalayas",
     description:
-      "Indulge in luxury in this overwater villa in the Maldives with stunning views of the Indian Ocean.",
+      "Indulge in luxury in this high-end villa located in the heart of the Himalayas, offering stunning mountain views and exclusive amenities.",
     image:
       "https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=800&q=60",
     price: 6000,
-    location: "Maldives",
-    country: "Maldives",
+    location: "Solukhumbu",
+    country: "Nepal",
   },
   {
-    title: "Ski Chalet in Aspen",
+    title: "Ski Chalet near Annapurna",
     description:
-      "Hit the slopes in style with this luxurious ski chalet in the world-famous Aspen ski resort.",
+      "Hit the slopes in style with this luxurious chalet near popular trekking and skiing areas in the Annapurna region.",
     image:
       "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=60",
     price: 4000,
-    location: "Aspen",
-    country: "United States",
+    location: "Annapurna",
+    country: "Nepal",
   },
   {
-    title: "Secluded Beach House in Costa Rica",
+    title: "Secluded Beach House on Koshi River",
     description:
-      "Escape to a secluded beach house on the Pacific coast of Costa Rica. Surf, relax, and unwind.",
+      "Escape to a secluded riverside house on the banks of the Koshi River. Enjoy surfing, relaxing, and reconnecting with nature.",
     image:
       "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=60",
     price: 1800,
-    location: "Costa Rica",
-    country: "Costa Rica",
+    location: "Koshi Tappu",
+    country: "Nepal",
   },
 ];
 
-
-module.exports = { data: sampleListings };
+module.exports = {data: sampleListings};

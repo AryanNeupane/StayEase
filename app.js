@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const path=require("path")
 const Listing = require("./models/listing")
 const methodOverride=require("method-override")
+const ejsMate = require("ejs-mate")
+
 
 const MONGO_URL = 'mongodb://127.0.0.1:27017/StayEase'
 
@@ -21,6 +23,9 @@ app. set ("view engine", "ejs");
 app. set ("views", path. join(__dirname, "views"));
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride("_method"))
+app.engine("ejs", ejsMate);
+app.use(express.static(path.join(__dirname, "public")));
+
 
 
 
@@ -81,9 +86,12 @@ app.get("/listings/:id", async (req, res) => {
 //Create Route 
 
 app.post("/listings",async(req,res)=>{
-  const newListing=new Listing(req.body.listing)
+ try{ const newListing=new Listing(req.body.listing)
   await newListing.save()
-  res.redirect("/listings")
+  res.redirect("/listings")}
+  catch(err){
+    next(err);
+  }
 })
 
 
@@ -109,6 +117,11 @@ app.delete("/listings/:id", async (req, res) => {
   await Listing.findByIdAndDelete(id);
   res.redirect("/listings");
 });
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
+})
 
 
 

@@ -1,0 +1,47 @@
+
+/* navbar */
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+.navbar {
+    height: 5rem;
+    background-color: #fff;
+}
+.fa-compass {
+    font-size: 2rem;
+    color: #fe424d;
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    color: #222222 !important;
+}
+.title-color {
+    color: #fe424d !important;
+}
+
+ .hover-shadow:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .add-btn{
+    color: white !important;
+    background-color: #fe424d !important;
+    transition: transform 0.2s ease;
+
+  }
+  .title-color {
+    color: #fe424d !important;
+}
+  .add-btn:hover {
+    transform: scale(1.05);
+  }

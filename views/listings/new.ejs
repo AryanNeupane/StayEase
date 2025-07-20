@@ -1,36 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <h3>Create a new Listing</h3>
+<% layout('./layouts/boilerplate') -%>
 
-<form method="POST" action="/listings">
-  <input name="listing[title]" placeholder="Enter title" type="text" required>
-  <br>
+<body class="bg-light">
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h4 class="card-title title-color text-center mb-4">Create a New Listing</h4>
 
-  <textarea name="listing[description]" placeholder="Enter description"></textarea>
-  <br>
+            <form method="POST" action="/listings" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input
+                  name="listing[title]"
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  required
+                  placeholder="Enter title"
+                />
+                <div class="invalid-feedback">
+                  Please enter a title.
+                </div>
+              </div>
 
-  <input name="listing[image]" placeholder="Enter image URL/Link" type="text">
-  <br>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                  name="listing[description]"
+                  class="form-control"
+                  id="description"
+                  rows="3"
+                  required
+                  placeholder="Enter description"
+                ></textarea>
+                <div class="invalid-feedback">
+                  Please enter a description.
+                </div>
+              </div>
 
-  <input name="listing[price]" placeholder="Enter price" type="number">
-  <br>
+              <div class="mb-3">
+                <label for="image" class="form-label">Image URL</label>
+                <input
+                  name="listing[image]"
+                  type="url"
+                  class="form-control"
+                  id="image"
+                  required
+                  placeholder="Enter image URL"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid image URL.
+                </div>
+              </div>
 
-  <input name="listing[location]" placeholder="Enter location" type="text">
-  <br>
+              <div class="row mb-3">
+                <div class="col">
+                  <label for="price" class="form-label">Price (NPR)</label>
+                  <input
+                    name="listing[price]"
+                    type="text"
+                    class="form-control"
+                    id="price"
+                    required
+                    min="1"
+                    placeholder="Enter price"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid price greater than 0.
+                  </div>
+                </div>
+                <div class="col">
+                  <label for="country" class="form-label">Country</label>
+                  <input
+                    name="listing[country]"
+                    type="text"
+                    class="form-control"
+                    id="country"
+                    required
+                    placeholder="Enter country"
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a country.
+                  </div>
+                </div>
+              </div>
 
-  <input name="listing[country]" placeholder="Enter country" type="text">
-  <br>
+              <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input
+                  name="listing[location]"
+                  type="text"
+                  class="form-control"
+                  id="location"
+                  required
+                  placeholder="Enter location"
+                />
+                <div class="invalid-feedback">
+                  Please enter a location.
+                </div>
+              </div>
 
-  <button type="submit">Create Listing</button>
-</form>
+              <div class="text-center">
+                <button type="submit" class="btn add-btn btn-sm px-4">
+                  Add Listing
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </body>
-</html>
