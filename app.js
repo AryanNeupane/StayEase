@@ -7,7 +7,9 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
-const { listingJoiSchema } = require("./schema.js");
+const { listingJoiSchema, reviewJoiSchema } = require("./schema.js");
+
+const Review= require("./models/review");
 
 
 
@@ -46,6 +48,15 @@ const validateListing = (req, res, next) => {
   }
 }
 
+const validateReview = (req, res, next) => {
+  const { error } = reviewJoiSchema.validate(req.body.review);  // validate req.body.review
+  if (error) {
+    throw new ExpressError(400, error.details.map(d => d.message).join(', '));
+  } else {
+    next();
+  }
+};
+
 
 
 // Index Route - list all listings
@@ -63,17 +74,19 @@ app.get("/listings/new", (req, res) => {
 });
 
 // Show Route - show one listing by id
+// Show Route - show one listing by id WITH reviews populated
 app.get(
   "/listings/:id",
   wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate('reviews'); // <-- populate reviews here
     if (!listing) {
       throw new ExpressError(404, "Listing Not Found");
     }
     res.render("listings/show.ejs", { listing });
   })
 );
+
 
 // Create Route - save new listing
 app.post(
@@ -124,6 +137,48 @@ app.delete(
     res.redirect("/listings");
   })
 );
+
+
+// REviews
+//Post Route
+
+app.post(
+  "/listings/:id/reviews", validateReview,
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+   let newReview = new Review(req.body.review);
+    
+    listing.reviews.push(newReview);
+    await newReview.save();
+    await listing.save();
+    res.redirect(`/listings/${id}`);
+  })
+);
+
+
+// Delete Review Route
+app.delete(
+  "/listings/:id/reviews/:reviewId",
+  wrapAsync(async (req, res) => {
+    const { id, reviewId } = req.params;
+    const listing = await Listing.findById(id);
+    if (!listing) {
+      throw new ExpressError(404, "Listing Not Found");
+    }     
+    // Remove the review from the listing's reviews array
+    listing.reviews = listing.reviews.filter(review => review._id.toString() !== reviewId);
+    await listing.save();   
+    // Delete the review document from the database
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+  })
+);
+
+
+
+
+
 
 // 404 handler for all other routes
 // v5
