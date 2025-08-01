@@ -8,3 +8,4 @@
         "nodemon")
 - - ejs, ejs mate for UI rendering
 - - JOI for schema validation
+-- express session for session and  cookies

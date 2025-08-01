@@ -1,33 +1,39 @@
 <% layout('./layouts/boilerplate') -%>
+<div class="container my-5">
+  <h3 class="text-center mb-4">All Listings</h3>
 
-<body>
-  <div class="container my-5">
-    <h3 class="text-center mb-4">All Listings</h3>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <% for (let listing of allListings) { %>
+    <div class="col">
+      <div class="card h-100 shadow-sm shadow-sm hover-shadow border-0">
+        <img
+          src="<%= listing.image %>"
+          class="card-img-top"
+          alt="<%= listing.title %>"
+          style="height: 200px; object-fit: cover"
+        />
+        <div class="card-body d-flex flex-column position-relative">
+          <h5 class="card-title mb-2"><%= listing.title %></h5>
+          <p class="card-text text-muted mb-1">
+            <%= listing.location %>, <%= listing.country %>
+          </p>
+          <p class="card-text fw-semibold">
+            NPR <%= listing.price ? listing.price.toLocaleString("en-IN") :
+            "N/A" %> /night
+          </p>
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-      <% for (let listing of allListings) { %>
-        <div class="col">
-          <div class="card h-100 shadow-sm shadow-sm hover-shadow border-0">
-            <img src="<%= listing.image %>" class="card-img-top" alt="<%= listing.title %>" style="height: 200px; object-fit: cover;" />
-            <div class="card-body d-flex flex-column position-relative">
-              <h5 class="card-title mb-2"><%= listing.title %></h5>
-              <p class="card-text text-muted mb-1">
-                <%= listing.location %>, <%= listing.country %>
-              </p>
-              <p class="card-text fw-semibold">
-               NPR <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> /night
+          <!-- View Details button -->
+          <a
+            href="/listings/<%= listing._id %>"
+            class="btn btn-sm btn-outline-primary mt-auto z-1"
+            >View Details</a
+          >
 
-              </p>
-
-              <!-- View Details button -->
-              <a href="/listings/<%= listing._id %>" class="btn btn-sm btn-outline-primary mt-auto z-1">View Details</a>
-
-              <!-- Makes the entire card clickable, behind the button -->
-              <a href="/listings/<%= listing._id %>" class="stretched-link"></a>
-            </div>
-          </div>
+          <!-- Makes the entire card clickable, behind the button -->
+          <a href="/listings/<%= listing._id %>" class="stretched-link"></a>
         </div>
-      <% } %>
+      </div>
     </div>
+    <% } %>
   </div>
-</body>
+</div>
