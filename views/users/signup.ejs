@@ -1,0 +1,73 @@
+<% layout('./layouts/boilerplate') -%>
+
+<body class="bg-light">
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h4 class="card-title title-color text-center mb-4">Create an Account</h4>
+
+            <form method="POST" action="/signup" class="needs-validation" novalidate>
+              <!-- Username -->
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                  name="username"
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  required
+                  placeholder="Enter username"
+                />
+                <div class="invalid-feedback">
+                  Please enter a username.
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  required
+                  placeholder="Enter email"
+                />
+                <div class="invalid-feedback">
+                  Please enter a valid email.
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  required
+                  placeholder="Enter password"
+                />
+                <div class="invalid-feedback">
+                  Please enter a password.
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="text-center">
+                <button type="submit" class="btn add-btn btn-sm px-4">
+                  Sign Up
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

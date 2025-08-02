@@ -1,0 +1,57 @@
+<% layout('./layouts/boilerplate') -%>
+
+<body class="bg-light">
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h4 class="card-title title-color text-center mb-4">Log In to Your Account</h4>
+
+            <form method="POST" action="/login" class="needs-validation" novalidate>
+              <!-- Username -->
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                  name="username"
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  required
+                  placeholder="Enter your username"
+                />
+                <div class="invalid-feedback">
+                  Please enter your username.
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  required
+                  placeholder="Enter your password"
+                />
+                <div class="invalid-feedback">
+                  Please enter your password.
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="text-center">
+                <button type="submit" class="btn add-btn btn-sm px-4">
+                  Log In
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
