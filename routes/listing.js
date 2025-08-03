@@ -30,7 +30,6 @@ router.get(
 
 // New Route - form to create new listing
 router.get("/new",isLoggedIn, (req, res) => {
-
   res.render("listings/new.ejs");
 });
 

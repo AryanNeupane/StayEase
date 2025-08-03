@@ -3,6 +3,7 @@ const wrapAsync = require('../utils/wrapAsync');
 const User = require('../models/user');
 const passport = require('passport');
 const router = express.Router();
+const {saveRedirectUrl} = require('../middleware');
 
 
 router.get("/signup", (req, res) => {
@@ -34,15 +35,20 @@ router.get("/login", (req, res) => {
 
 router.post(
   "/login",
+  saveRedirectUrl, // Save redirect URL before authentication
   passport.authenticate("local", {
     failureRedirect: "/login",
     failureFlash: true,
   }),
-  async (req, res) => {
+  (req, res) => {
     req.flash("success", "Welcome back!");
-    res.redirect("/listings"); // or wherever you want after login
+    const redirectUrl = req.session.redirectUrl || "/listings";
+    delete req.session.redirectUrl; // Clean up
+    res.redirect(res.locals.redirect || "/listings" );
   }
 );
+
+
 
 router.get("/logout", (req, res,next ) => {
   req.logout((err) => {
