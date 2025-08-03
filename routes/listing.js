@@ -5,7 +5,7 @@ const ExpressError = require("../utils/ExpressError");
 const {listingJoiSchema} = require("../schema");
 const review = require("../models/review");
 const Listing = require("../models/listing");
-
+const { isLoggedIn } = require("../middleware"); // Import the middleware
 
 
 
@@ -29,7 +29,8 @@ router.get(
 );
 
 // New Route - form to create new listing
-router.get("/new", (req, res) => {
+router.get("/new",isLoggedIn, (req, res) => {
+
   res.render("listings/new.ejs");
 });
 
