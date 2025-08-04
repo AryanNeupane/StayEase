@@ -5,7 +5,7 @@ const ExpressError = require("../utils/ExpressError");
 const { listingJoiSchema } = require("../schema");
 const review = require("../models/review");
 const Listing = require("../models/listing");
-const { isLoggedIn } = require("../middleware"); // Import the middleware
+const { isLoggedIn, isOwner } = require("../middleware"); // Import the middleware
 
 
 
@@ -81,7 +81,7 @@ router.get(
 
 // Update Route - update listing in DB
 router.put(
-  "/:id", validateListing,
+  "/:id",isLoggedIn,isOwner, validateListing,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const updatedListing = await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { new: true });
