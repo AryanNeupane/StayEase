@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync");
-const ExpressError = require("../utils/ExpressError");  
-const {listingJoiSchema} = require("../schema");
+const ExpressError = require("../utils/ExpressError");
+const { listingJoiSchema } = require("../schema");
 const review = require("../models/review");
 const Listing = require("../models/listing");
 const { isLoggedIn } = require("../middleware"); // Import the middleware
@@ -29,7 +29,7 @@ router.get(
 );
 
 // New Route - form to create new listing
-router.get("/new",isLoggedIn, (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
   res.render("listings/new.ejs");
 });
 
@@ -39,11 +39,15 @@ router.get(
   "/:id",
   wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const listing = await Listing.findById(id).populate('reviews'); // <-- populate reviews here
+    const listing = await Listing.findById(id)
+      .populate('reviews')
+      .populate('owner');
+
     if (!listing) {
-      req.flash("error", " listing doesnot exist. !");
+      req.flash("error", "Listing does not exist!");
       return res.redirect("/listings");
     }
+
     res.render("listings/show.ejs", { listing });
   })
 );
@@ -51,10 +55,11 @@ router.get(
 
 // Create Route - save new listing
 router.post(
-  "/",validateListing,
+  "/", validateListing,
   wrapAsync(async (req, res) => {
-   
+
     const newListing = new Listing(req.body.listing);
+    newListing.owner = req.user._id; // Set the owner to the logged-in user
     await newListing.save();
     req.flash("success", "Successfully created a new listing!");
     res.redirect("/listings");
@@ -76,7 +81,7 @@ router.get(
 
 // Update Route - update listing in DB
 router.put(
-  "/:id",validateListing,
+  "/:id", validateListing,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const updatedListing = await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { new: true });

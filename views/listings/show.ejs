@@ -16,6 +16,9 @@
 
           <div class="card-body p-4">
             <h4 class="card-title mb-3 fw-semibold"><%= listing.title %></h4>
+            <p class="card-text"> Created by :
+              <i> <%= listing.owner.username %></i>
+            </p>
             <p class="card-text text-muted"><%= listing.description %></p>
 
             <ul class="list-group list-group-flush mb-3">
