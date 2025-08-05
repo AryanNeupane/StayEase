@@ -55,6 +55,7 @@
             <% } %>
             <hr class="my-4" />
 
+            <% if(currentUser){ %>
             <h5 class="mb-3 fw-semibold">Leave a Review</h5>
 
             <form
@@ -96,7 +97,7 @@
                 Post Review
               </button>
             </form>
-
+            <% } %>
             <hr class="my-4" />
 
             <h5 class="mb-4 fw-semibold">User Reviews</h5>
@@ -108,7 +109,8 @@
                 <div class="card h-100 shadow-sm">
                   <div class="card-body">
                     <h6 class="card-subtitle mb-1 text-primary fw-bold">
-                      Aryan Neupane
+                      <%= review.author.username %>
+
                     </h6>
                     <h6 class="card-subtitle mb-2 text-warning">
                       <% for(let i=1; i<=5; i++) { %> <% if(i <= review.rating)

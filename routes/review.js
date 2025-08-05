@@ -4,25 +4,20 @@ const Listing = require('../models/listing');
 const Review = require('../models/review');
 const wrapAsync = require('../utils/wrapAsync');
 const ExpressError = require('../utils/ExpressError');
-const { reviewJoiSchema } = require('../schema');
+const {  validateReview, isLoggedIn, isOwner, isReviewAuthor } = require('../middleware');
 
-const validateReview = (req, res, next) => {
-  const { error } = reviewJoiSchema.validate(req.body.review);
-  if (error) {
-    throw new ExpressError(400, error.details.map(d => d.message).join(', '));
-  } else {
-    next();
-  }
-};
+
 
 // ✅ POST Review
 router.post(
   '/',
+  isLoggedIn,
   validateReview,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id);
     const newReview = new Review(req.body.review);
+    newReview.author = req.user._id; // Set the author to the logged-in user
     listing.reviews.push(newReview);
     await newReview.save();
     await listing.save();
@@ -35,17 +30,12 @@ router.post(
 // ✅ DELETE Review
 router.delete(
   "/:reviewId",
-  wrapAsync(async (req, res) => {
+  isLoggedIn,
+  isReviewAuthor,
+    wrapAsync(async (req, res) => {
     const { id, reviewId } = req.params;
-    const listing = await Listing.findById(id);
-    if (!listing) {
-      throw new ExpressError(404, "Listing not found");
-    }
-
-    listing.reviews = listing.reviews.filter(
-      (review) => review._id.toString() !== reviewId
-    );
-    await listing.save();
+    await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+    // Delete the review from the database
     await Review.findByIdAndDelete(reviewId);
     req.flash("success", "Review Deleted !");
     res.redirect(`/listings/${id}`);

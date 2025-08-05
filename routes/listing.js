@@ -2,21 +2,12 @@ const express = require('express');
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync");
 const ExpressError = require("../utils/ExpressError");
-const { listingJoiSchema } = require("../schema");
-const review = require("../models/review");
+
 const Listing = require("../models/listing");
-const { isLoggedIn, isOwner } = require("../middleware"); // Import the middleware
+const { isLoggedIn, isOwner, validateListing } = require("../middleware"); // Import the middleware
 
 
 
-const validateListing = (req, res, next) => {
-  const { error } = listingJoiSchema.validate(req.body.listing);  // validate req.body.listing, not entire req.body
-  if (error) {
-    throw new ExpressError(400, error.details.map(d => d.message).join(', '));
-  } else {
-    next();
-  }
-}
 
 
 // Index Route - list all listings
@@ -40,7 +31,10 @@ router.get(
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id)
-      .populate('reviews')
+      .populate({
+        path: 'reviews',
+        populate: { path: 'author' }
+      })
       .populate('owner');
 
     if (!listing) {
@@ -51,6 +45,8 @@ router.get(
     res.render("listings/show.ejs", { listing });
   })
 );
+
+
 
 
 // Create Route - save new listing
@@ -81,7 +77,7 @@ router.get(
 
 // Update Route - update listing in DB
 router.put(
-  "/:id",isLoggedIn,isOwner, validateListing,
+  "/:id", isLoggedIn, isOwner, validateListing,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const updatedListing = await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { new: true });
