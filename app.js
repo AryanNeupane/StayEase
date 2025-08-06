@@ -10,7 +10,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const User = require("./models/user");
 const LocalStrategy = require("passport-local").Strategy; 
-
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 const listingRouter=require("./routes/listing");
 const reviewRouter = require("./routes/review");
