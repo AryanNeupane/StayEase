@@ -1,3 +1,6 @@
+require('dotenv').config()
+
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -10,8 +13,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const User = require("./models/user");
 const LocalStrategy = require("passport-local").Strategy; 
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+// const multer  = require('multer')
+// const upload = multer({ dest: 'uploads/' })
 
 const listingRouter=require("./routes/listing");
 const reviewRouter = require("./routes/review");
@@ -39,6 +42,7 @@ app.engine("ejs", ejsMate);
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/uploads', express.static(path.join(__dirname, "uploads")));
 
 const sessionOptions = {
   secret:"mysecretcode",
@@ -108,8 +112,21 @@ app.get('/{*splat}', async (req, res,next) => {
 // General error handler
 app.use((err, req, res, next) => {
   const { status = 500, message = "Something went wrong!" } = err;
-  res.status(status).render("error", { errorMessage: message });
+
+  if (process.env.NODE_ENV === 'development') {
+    return res.status(status).render("error", { 
+      errorMessage: message, 
+      errorStack: err.stack || ''  // Provide default empty string
+    });
+  }
+
+  res.status(status).render("error", { 
+    errorMessage: message,
+    errorStack: ''  // Always pass errorStack (empty in production)
+  });
 });
+
+
 
 
 app.listen(3000, () => {

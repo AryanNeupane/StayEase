@@ -8,7 +8,7 @@
           <div class="card-body p-4">
             <h4 class="card-title text-center mb-4 title-color">Edit Your Listing</h4>
 
-            <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate>
+            <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate enctype="multipart/form-data">
               <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input
@@ -35,16 +35,18 @@
               </div>
 
               <div class="mb-3">
-                <label for="image" class="form-label">Image URL</label>
+                <label for="image" class="form-label">Upload New Image</label>
                 <input
                   name="listing[image]"
-                  type="text"
+                  type="file"
                   class="form-control"
                   id="image"
-                  value="<%= listing.image %>"
-                  required
+                  accept="image/*"
                 />
-                <div class="invalid-feedback">Please enter an image URL.</div>
+                <div class="invalid-feedback">Please select a valid image file.</div>
+                <% if (listing.image && (listing.image.url || listing.image)) { %>
+                  <small class="text-muted">Current image: <%= typeof listing.image === 'object' ? listing.image.url : listing.image %></small>
+                <% } %>
               </div>
 
               <div class="row mb-3">

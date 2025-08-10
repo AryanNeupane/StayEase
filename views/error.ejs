@@ -3,12 +3,14 @@
 <body>
   <main class="d-flex flex-column justify-content-center align-items-center vh-100 text-center px-3">
     <h2 class="display-1 text-danger mb-4">Oops! Something went wrong.</h2>
-    <p class="lead mb-4">
-       <%= errorMessage %>
-    </p>
-    <a href="/" class="btn btn-primary btn-lg">
-      Go Back Home
-    </a>
+    <p class="lead mb-4"><%= errorMessage %></p>
+
+    <% if (errorStack) { %>
+      <pre style="text-align:left; background:#eee; padding:1em; border-radius:5px; max-width:600px; overflow:auto;">
+        <%= errorStack %>
+      </pre>
+    <% } %>
+
+    <a href="/" class="btn btn-primary btn-lg">Go Back Home</a>
   </main>
 </body>
-

@@ -1,6 +1,6 @@
 const Listing = require("./models/listing");
 const Review = require("./models/review");
-const { ExpressError } = require("./utils/ExpressError");
+const ExpressError = require("./utils/ExpressError");
 const listingJoiSchema = require("./schema").listingJoiSchema;
 const reviewJoiSchema = require("./schema").reviewJoiSchema;
 
@@ -41,11 +41,31 @@ module.exports.isOwner = async (req, res, next) => {
 }
 
 module.exports.validateListing = (req, res, next) => {
-  const { error } = listingJoiSchema.validate(req.body.listing);  // validate req.body.listing, not entire req.body
-  if (error) {
-    throw new ExpressError(400, error.details.map(d => d.message).join(', '));
-  } else {
-    next();
+  try {
+    console.log('Validation middleware - req.body:', req.body);
+    console.log('Validation middleware - req.file:', req.file);
+    
+    // Create a copy of the listing data for validation
+    const listingData = { ...req.body.listing };
+    
+    // If a file was uploaded, add the file path to the listing data
+    if (req.file) {
+      listingData.image = req.file.path;
+    }
+    
+    console.log('Validation middleware - listingData:', listingData);
+    
+    const { error } = listingJoiSchema.validate(listingData);
+    if (error) {
+      console.log('Validation error:', error.details);
+      throw new ExpressError(400, error.details.map(d => d.message).join(', '));
+    } else {
+      console.log('Validation passed');
+      next();
+    }
+  } catch (error) {
+    console.error('Error in validateListing middleware:', error);
+    throw error;
   }
 }
 

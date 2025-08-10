@@ -32,11 +32,31 @@ module.exports.showListing = async (req, res) => {
 
 // Create Route
 module.exports.createListing = async (req, res) => {
-  const newListing = new Listing(req.body.listing);
-  newListing.owner = req.user._id;
-  await newListing.save();
-  req.flash("success", "Successfully created a new listing!");
-  res.redirect("/listings");
+  try {
+    console.log('Request body:', req.body);
+    console.log('Request file:', req.file);
+    console.log('User:', req.user);
+    
+    const newListing = new Listing(req.body.listing);
+    newListing.owner = req.user._id;
+    
+    // Handle uploaded image
+    if (req.file) {
+      newListing.image = {
+        url: `/uploads/${req.file.filename}`,
+        filename: req.file.filename
+      };
+    }
+    
+    console.log('New listing object:', newListing);
+    
+    await newListing.save();
+    req.flash("success", "Successfully created a new listing!");
+    res.redirect("/listings");
+  } catch (error) {
+    console.error('Error creating listing:', error);
+    throw error;
+  }
 };
 
 // Edit Form Route
@@ -51,13 +71,28 @@ module.exports.renderEditForm = async (req, res) => {
 
 // Update Listing Route
 module.exports.updateListing = async (req, res) => {
-  const { id } = req.params;
-  const updatedListing = await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { new: true });
-  if (!updatedListing) {
-    throw new ExpressError(404, "Listing Not Found");
+  try {
+    const { id } = req.params;
+    const updateData = { ...req.body.listing };
+    
+    // Handle uploaded image
+    if (req.file) {
+      updateData.image = {
+        url: `/uploads/${req.file.filename}`,
+        filename: req.file.filename
+      };
+    }
+    
+    const updatedListing = await Listing.findByIdAndUpdate(id, updateData, { new: true });
+    if (!updatedListing) {
+      throw new ExpressError(404, "Listing Not Found");
+    }
+    req.flash("success", "Listing updated!");
+    res.redirect(`/listings/${id}`);
+  } catch (error) {
+    console.error('Error updating listing:', error);
+    throw error;
   }
-  req.flash("success", "Listing updated!");
-  res.redirect(`/listings/${id}`);
 };
 
 // Delete Route
