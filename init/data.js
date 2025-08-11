@@ -1,3 +1,20 @@
+/**
+ * Sample Data for Database Initialization
+ * 
+ * This file contains sample listing data used to populate the database
+ * during development and testing. Each listing includes:
+ * - Title and description
+ * - Image URL from Unsplash
+ * - Price, location, and country information
+ * 
+ * This data provides a realistic starting point for the application.
+ */
+
+/**
+ * Sample Listings Array
+ * Contains 30 diverse property listings from various locations worldwide
+ * Each listing has realistic descriptions and pricing
+ */
 const sampleListings = [
   {
     title: "Cozy Beachfront Cottage",
@@ -349,4 +366,5 @@ const sampleListings = [
   },
 ];
 
+// Export the sample data for use in database initialization
 module.exports = { data: sampleListings };

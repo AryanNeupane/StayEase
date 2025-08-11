@@ -1,0 +1,158 @@
+<% layout('./layouts/boilerplate') -%>
+
+<!-- Navbar is inherited from your boilerplate layout -->
+
+<!-- Hero Section -->
+<section class="py-5 text-white" style="background: linear-gradient(135deg, #f1750f 0%, #7c3aed 100%);">
+  <div class="container text-center py-5">
+    <h1 class="display-3 fw-bold mb-4">Welcome to <span class="text-warning">StayEase</span></h1>
+    <p class="lead mb-5 mx-auto" style="max-width: 720px;">
+      Discover amazing vacation rentals around the world. From cozy cottages to luxury villas, find your perfect getaway with StayEase.
+    </p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="/listings" class="btn btn-warning btn-lg shadow-sm px-4">
+        Explore Listings
+      </a>
+      <a href="/signup" class="btn btn-outline-light btn-lg px-4">
+        Join StayEase
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5">Why Choose StayEase?</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="p-4 bg-white rounded shadow-sm h-100">
+          <div class="mb-3 fs-1 text-primary">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Diverse Properties</h3>
+          <p>From beachfront cottages to mountain retreats, find perfect stays for your style and budget.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 bg-white rounded shadow-sm h-100">
+          <div class="mb-3 fs-1 text-success">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3>Verified Reviews</h3>
+          <p>Read authentic reviews from real guests to make informed decisions about your stay.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 bg-white rounded shadow-sm h-100">
+          <div class="mb-3 fs-1 text-purple">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Secure Booking</h3>
+          <p>Book confidently knowing your payments and data are protected with our secure system.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Popular Destinations Section -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5">Popular Destinations</h2>
+    <div class="row g-4">
+      <% const destinations = [
+        { title: "Beach Getaways", subtitle: "Sun, sand, and relaxation", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" },
+        { title: "Mountain Retreats", subtitle: "Adventure and tranquility", img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" },
+        { title: "Urban Escapes", subtitle: "City life and culture", img: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc89?auto=format&fit=crop&w=600&q=80" },
+        { title: "Luxury Villas", subtitle: "Premium accommodations", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" }
+      ] %>
+      <% destinations.forEach(dest => { %>
+        <div class="col-6 col-lg-3">
+          <div class="card shadow-sm overflow-hidden position-relative">
+            <img src="<%= dest.img %>" class="card-img-top object-fit-cover" style="height: 180px; transition: transform 0.3s ease;" alt="<%= dest.title %>">
+            <div class="card-img-overlay d-flex flex-column justify-content-end p-3" style="background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);">
+              <h5 class="card-title text-white mb-1"><%= dest.title %></h5>
+              <p class="card-text text-white-50 small"><%= dest.subtitle %></p>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5">How It Works</h2>
+    <div class="row g-4 text-center">
+      <% const steps = [
+        { num: 1, title: "Search & Discover", desc: "Browse our extensive collection and find your perfect stay." },
+        { num: 2, title: "Book Securely", desc: "Make reservations with confidence through our secure system." },
+        { num: 3, title: "Enjoy Your Stay", desc: "Arrive and enjoy a memorable vacation experience." }
+      ] %>
+      <% steps.forEach(step => { %>
+        <div class="col-md-4">
+          <div>
+            <div class="rounded-circle bg-primary text-white mx-auto mb-3" style="width: 60px; height: 60px; line-height: 60px; font-size: 1.5rem;">
+              <%= step.num %>
+            </div>
+            <h4><%= step.title %></h4>
+            <p class="text-muted"><%= step.desc %></p>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-5">What Our Guests Say</h2>
+    <div class="row g-4">
+      <% const testimonials = [
+        { name: "Sarah Johnson", role: "Verified Guest", text: "Amazing experience! The property was exactly as described and the booking process was seamless." },
+        { name: "Mike Chen", role: "Verified Guest", text: "Found the perfect beachfront cottage for our family vacation. Highly recommend StayEase!" },
+        { name: "Emily Rodriguez", role: "Verified Guest", text: "The customer service was exceptional and the property exceeded our expectations." }
+      ] %>
+      <% testimonials.forEach(test => { %>
+        <div class="col-md-4">
+          <div class="card shadow-sm p-4 h-100">
+            <div class="mb-3 text-warning fs-4">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <p class="text-muted fst-italic">"<%= test.text %>"</p>
+            <div class="d-flex align-items-center mt-4">
+              <div class="rounded-circle bg-secondary me-3" style="width: 40px; height: 40px;"></div>
+              <div>
+                <strong class="d-block text-dark"><%= test.name %></strong>
+                <small class="text-muted"><%= test.role %></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-5 text-white" style="background: linear-gradient(90deg, #12cc53 0%, #7c3aed 100%);">
+  <div class="container text-center">
+    <h2 class="display-5 fw-bold mb-4">Ready to Start Your Journey?</h2>
+    <p class="lead mb-4 mx-auto" style="max-width: 600px;">
+      Join thousands of travelers who have discovered amazing destinations through StayEase.
+    </p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <a href="/listings" class="btn btn-warning btn-lg shadow px-4">
+        Browse Properties
+      </a>
+      <a href="/signup" class="btn btn-outline-light btn-lg px-4">
+        Create Account
+      </a>
+    </div>
+  </div>
+</section>
+
