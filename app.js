@@ -1,6 +1,8 @@
-require('dotenv').config()
+const dotenv = require('dotenv')
+dotenv.config()
 
 
+console.log('Loaded MONGODB URI:', process.env.ATLAS_URL);
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -9,6 +11,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const User = require("./models/user");
@@ -23,18 +26,20 @@ const userRouter = require("./routes/user");
 // Connect to MongoDB
 
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/StayEase";
+const dbUrl = process.env.ATLAS_URL ;
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  try {
+    console.log('Connecting with URI:', dbUrl); // Should print full URI now
+    await mongoose.connect(dbUrl);
+    console.log('MongoDB connected');
+  } catch (error) {
+    console.error('Connection error:', error);
+  }
 }
-main()
-  .then(() => {
-    console.log("Database Connected");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+
+main();
+main();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -44,8 +49,22 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/uploads', express.static(path.join(__dirname, "uploads")));
 
+
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 60 * 60,
+  crypto: {
+    secret:process.env.SECRET,
+  },
+});
+
+store.on("error", function(e) {
+  console.log("SESSION STORE ERROR", e);
+});
+
 const sessionOptions = {
-  secret:"mysecretcode",
+  store,
+  secret:process.env.SECRET,
   resave: false,
   saveUninitialized: true,  
   cookie: {
@@ -58,9 +77,10 @@ const sessionOptions = {
 
 
 // Home route
-app.get("/", (req, res) => {
-  res.send("Hello World This is Aryan");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World This is Aryan");
+// });
+
 
 
 app.use(session(sessionOptions));
