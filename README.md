@@ -2,6 +2,8 @@
 
 StayEase is a full-stack web application built with Node.js, Express, MongoDB, and EJS templating. It's a vacation rental platform where users can browse, create, and manage property listings, as well as leave reviews.
 
+#### Demo Availabel on: https://stayease-9sga.onrender.com/
+
 ## 🏗️ Project Architecture
 
 ### Core Technologies
